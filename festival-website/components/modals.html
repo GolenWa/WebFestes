@@ -1,0 +1,1003 @@
+<!-- MODALS COMPONENT -->
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal d-none">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3><i class="fas fa-sign-in-alt"></i> Inicia Sessió</h3>
+        <form class="modal-form">
+            <div class="form-group">
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Introdueix el teu email" required>
+            </div>
+            <div class="form-group">
+                <label for="loginPass">Contrasenya:</label>
+                <input type="password" id="loginPass" placeholder="Introdueix la contrasenya" required>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="rememberMe"> Recordar-me
+                </label>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="performLogin()">
+                    <i class="fas fa-sign-in-alt"></i> Entrar
+                </button>
+                <button type="button" class="btn btn-outline" onclick="closeModal('loginModal')">
+                    Cancel·lar
+                </button>
+            </div>
+            <div class="form-links">
+                <a href="#" onclick="openModal('registerModal'); closeModal('loginModal')">No tens compte? Registra't</a>
+                <a href="#" onclick="openModal('forgotPasswordModal'); closeModal('loginModal')">Has oblidat la contrasenya?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Register Modal -->
+<div id="registerModal" class="modal d-none">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3><i class="fas fa-user-plus"></i> Registra't</h3>
+        <form class="modal-form">
+            <div class="form-group">
+                <label for="registerName">Nom complet:</label>
+                <input type="text" id="registerName" placeholder="Introdueix el teu nom" required>
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" placeholder="Introdueix el teu email" required>
+            </div>
+            <div class="form-group">
+                <label for="registerPass">Contrasenya:</label>
+                <input type="password" id="registerPass" placeholder="Crea una contrasenya" required>
+            </div>
+            <div class="form-group">
+                <label for="registerPassConfirm">Confirma contrasenya:</label>
+                <input type="password" id="registerPassConfirm" placeholder="Repeteix la contrasenya" required>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="acceptTerms" required> Accepto els <a href="#" target="_blank">termes i condicions</a>
+                </label>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="performRegister()">
+                    <i class="fas fa-user-plus"></i> Registrar-se
+                </button>
+                <button type="button" class="btn btn-outline" onclick="closeModal('registerModal')">
+                    Cancel·lar
+                </button>
+            </div>
+            <div class="form-links">
+                <a href="#" onclick="openModal('loginModal'); closeModal('registerModal')">Ja tens compte? Inicia sessió</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div id="forgotPasswordModal" class="modal d-none">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3><i class="fas fa-key"></i> Recuperar Contrasenya</h3>
+        <form class="modal-form">
+            <div class="form-group">
+                <label for="forgotEmail">Email:</label>
+                <input type="email" id="forgotEmail" placeholder="Introdueix el teu email" required>
+            </div>
+            <div class="form-info">
+                <p><i class="fas fa-info-circle"></i> T'enviarem un enllaç per restablir la contrasenya</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="performForgotPassword()">
+                    <i class="fas fa-paper-plane"></i> Enviar Enllaç
+                </button>
+                <button type="button" class="btn btn-outline" onclick="closeModal('forgotPasswordModal')">
+                    Cancel·lar
+                </button>
+            </div>
+            <div class="form-links">
+                <a href="#" onclick="openModal('loginModal'); closeModal('forgotPasswordModal')">Tornar a iniciar sessió</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Add Event Modal -->
+<div id="addEventModal" class="modal d-none">
+    <div class="modal-content modal-large">
+        <span class="close-btn">&times;</span>
+        <h3><i class="fas fa-plus"></i> Afegeix una Nova Festa</h3>
+        <form class="modal-form">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="evtTitle">Nom de la festa *:</label>
+                    <input type="text" id="evtTitle" placeholder="Ex: Festa Major de Gràcia" required>
+                </div>
+                <div class="form-group">
+                    <label for="evtLocation">Localització *:</label>
+                    <input type="text" id="evtLocation" placeholder="Ex: Barcelona, Barcelonès" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="evtDate">Data d'inici *:</label>
+                    <input type="date" id="evtDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="evtEndDate">Data de finalització:</label>
+                    <input type="date" id="evtEndDate">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="evtType">Tipus de festa *:</label>
+                    <select id="evtType" required>
+                        <option value="cultural">Cultural</option>
+                        <option value="gastronomic">Gastronòmica</option>
+                        <option value="religious">Religiosa</option>
+                        <option value="music">Musical</option>
+                        <option value="traditional">Tradicional</option>
+                        <option value="sports">Esportiva</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="evtComarca">Comarca:</label>
+                    <select id="evtComarca">
+                        <option value="">Selecciona comarca</option>
+                        <option value="barcelones">Barcelonès</option>
+                        <option value="valles-occidental">Vallès Occidental</option>
+                        <option value="valles-oriental">Vallès Oriental</option>
+                        <option value="bages">Bages</option>
+                        <option value="maresme">Maresme</option>
+                        <option value="garraf">Garraf</option>
+                        <option value="alt-penedes">Alt Penedès</option>
+                        <option value="baix-penedes">Baix Penedès</option>
+                        <option value="anoia">Anoia</option>
+                        <option value="osona">Osona</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="evtDescription">Descripció:</label>
+                <textarea id="evtDescription" rows="4" placeholder="Descriu breument la festa, activitats principals, tradicions..."></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="evtWebsite">Lloc web:</label>
+                    <input type="url" id="evtWebsite" placeholder="https://...">
+                </div>
+                <div class="form-group">
+                    <label for="evtPhone">Telèfon de contacte:</label>
+                    <input type="tel" id="evtPhone" placeholder="Ex: 93 123 45 67">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="evtImage">Imatge (URL):</label>
+                <input type="url" id="evtImage" placeholder="https://exemple.com/imatge.jpg">
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="evtFree"> Entrada gratuïta
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="evtAccessible"> Accessible per a persones amb mobilitat reduïda
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="submitEvent()">
+                    <i class="fas fa-plus"></i> Afegir Festa
+                </button>
+                <button type="button" class="btn btn-outline" onclick="closeModal('addEventModal')">
+                    Cancel·lar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Event Details Modal -->
+<div id="eventDetailsModal" class="modal d-none">
+    <div class="modal-content modal-large">
+        <span class="close-btn">&times;</span>
+        <div class="event-details">
+            <div class="event-header">
+                <img id="eventImage" src="" alt="" class="event-image">
+                <div class="event-title-section">
+                    <h3 id="eventTitle"></h3>
+                    <div class="event-meta">
+                        <span class="event-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="eventLocation"></span>
+                        </span>
+                        <span class="event-date">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span id="eventDate"></span>
+                        </span>
+                        <span class="event-type">
+                            <i class="fas fa-tag"></i>
+                            <span id="eventType"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="event-actions">
+                    <button class="btn btn-outline btn-sm" onclick="toggleFavorite()">
+                        <i class="fas fa-heart" id="favoriteIcon"></i>
+                    </button>
+                    <button class="btn btn-outline btn-sm" onclick="shareEvent()">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="event-content">
+                <div class="event-description">
+                    <h4><i class="fas fa-info-circle"></i> Descripció</h4>
+                    <p id="eventDescription"></p>
+                </div>
+                
+                <div class="event-info-grid">
+                    <div class="info-item" id="eventWebsiteInfo" style="display: none;">
+                        <i class="fas fa-globe"></i>
+                        <span>Lloc web:</span>
+                        <a href="" id="eventWebsite" target="_blank"></a>
+                    </div>
+                    <div class="info-item" id="eventPhoneInfo" style="display: none;">
+                        <i class="fas fa-phone"></i>
+                        <span>Telèfon:</span>
+                        <span id="eventPhone"></span>
+                    </div>
+                    <div class="info-item" id="eventPriceInfo">
+                        <i class="fas fa-ticket-alt"></i>
+                        <span>Preu:</span>
+                        <span id="eventPrice"></span>
+                    </div>
+                    <div class="info-item" id="eventAccessibilityInfo" style="display: none;">
+                        <i class="fas fa-wheelchair"></i>
+                        <span>Accessible</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Share Modal -->
+<div id="shareModal" class="modal d-none">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3><i class="fas fa-share-alt"></i> Compartir Festa</h3>
+        <div class="share-options">
+            <button class="share-btn" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook"></i> Facebook
+            </button>
+            <button class="share-btn" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </button>
+            <button class="share-btn" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="share-btn" onclick="copyLink()">
+                <i class="fas fa-link"></i> Copiar enllaç
+            </button>
+        </div>
+        <div class="share-link">
+            <label for="shareUrl">Enllaç:</label>
+            <div class="link-container">
+                <input type="text" id="shareUrl" readonly>
+                <button class="btn btn-sm" onclick="copyToClipboard()">
+                    <i class="fas fa-copy"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Report Issue Modal -->
+<div id="reportModal" class="modal d-none">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h3><i class="fas fa-bug"></i> Reportar Error</h3>
+        <form class="modal-form">
+            <div class="form-group">
+                <label for="reportType">Tipus d'error:</label>
+                <select id="reportType" required>
+                    <option value="">Selecciona tipus</option>
+                    <option value="incorrect-info">Informació incorrecta</option>
+                    <option value="missing-event">Festa que falta</option>
+                    <option value="technical">Error tècnic</option>
+                    <option value="other">Altres</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="reportDescription">Descripció:</label>
+                <textarea id="reportDescription" rows="4" placeholder="Descriu l'error o problema..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="reportEmail">Email (opcional):</label>
+                <input type="email" id="reportEmail" placeholder="Per rebre una resposta">
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="submitReport()">
+                    <i class="fas fa-paper-plane"></i> Enviar Report
+                </button>
+                <button type="button" class="btn btn-outline" onclick="closeModal('reportModal')">
+                    Cancel·lar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="confirmModal" class="modal d-none">
+    <div class="modal-content modal-small">
+        <span class="close-btn">&times;</span>
+        <div class="confirm-content">
+            <div class="confirm-icon">
+                <i class="fas fa-question-circle"></i>
+            </div>
+            <h3 id="confirmTitle">Confirmar acció</h3>
+            <p id="confirmMessage">Estàs segur que vols continuar?</p>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" id="confirmBtn">
+                    Confirmar
+                </button>
+                <button type="button" class="btn btn-outline" onclick="closeModal('confirmModal')">
+                    Cancel·lar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal d-none">
+    <div class="modal-content modal-small">
+        <span class="close-btn">&times;</span>
+        <div class="success-content">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3 id="successTitle">Operació completada</h3>
+            <p id="successMessage">L'acció s'ha realitzat correctament.</p>
+            <div class="form-actions">
+                <button type="button" class="btn btn-primary" onclick="closeModal('successModal')">
+                    Tancar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Modal utility functions
+function performLogin() {
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPass').value;
+    const remember = document.getElementById('rememberMe').checked;
+    
+    if (!email || !password) {
+        showError('Si us plau, completa tots els camps');
+        return;
+    }
+    
+    // Simulate login process
+    console.log('Login attempt:', { email, remember });
+    showSuccess('Inici de sessió correcte', 'Benvingut de nou!');
+    closeModal('loginModal');
+    
+    // Update UI for logged in user
+    updateUserInterface(true, email);
+}
+
+function performRegister() {
+    const name = document.getElementById('registerName').value;
+    const email = document.getElementById('registerEmail').value;
+    const password = document.getElementById('registerPass').value;
+    const confirmPass = document.getElementById('registerPassConfirm').value;
+    const acceptTerms = document.getElementById('acceptTerms').checked;
+    
+    if (!name || !email || !password || !confirmPass) {
+        showError('Si us plau, completa tots els camps');
+        return;
+    }
+    
+    if (password !== confirmPass) {
+        showError('Les contrasenyes no coincideixen');
+        return;
+    }
+    
+    if (!acceptTerms) {
+        showError('Has d\'acceptar els termes i condicions');
+        return;
+    }
+    
+    // Simulate registration process
+    console.log('Register attempt:', { name, email });
+    showSuccess('Registre completat', 'Benvingut! Ja pots començar a utilitzar l\'aplicació.');
+    closeModal('registerModal');
+    
+    // Update UI for logged in user
+    updateUserInterface(true, email);
+}
+
+function performForgotPassword() {
+    const email = document.getElementById('forgotEmail').value;
+    
+    if (!email) {
+        showError('Si us plau, introdueix el teu email');
+        return;
+    }
+    
+    // Simulate password recovery
+    console.log('Password recovery for:', email);
+    showSuccess('Enllaç enviat', 'Revisa el teu correu electrònic per restablir la contrasenya.');
+    closeModal('forgotPasswordModal');
+}
+
+function submitEvent() {
+    const title = document.getElementById('evtTitle').value;
+    const location = document.getElementById('evtLocation').value;
+    const date = document.getElementById('evtDate').value;
+    const type = document.getElementById('evtType').value;
+    
+    if (!title || !location || !date || !type) {
+        showError('Si us plau, completa tots els camps obligatoris (*)');
+        return;
+    }
+    
+    // Collect all form data
+    const eventData = {
+        title,
+        location,
+        date,
+        endDate: document.getElementById('evtEndDate').value,
+        type,
+        comarca: document.getElementById('evtComarca').value,
+        description: document.getElementById('evtDescription').value,
+        website: document.getElementById('evtWebsite').value,
+        phone: document.getElementById('evtPhone').value,
+        image: document.getElementById('evtImage').value,
+        free: document.getElementById('evtFree').checked,
+        accessible: document.getElementById('evtAccessible').checked
+    };
+    
+    // Simulate event submission
+    console.log('New event:', eventData);
+    showSuccess('Festa afegida', 'La festa s\'ha afegit correctament i serà revisada aviat.');
+    closeModal('addEventModal');
+    
+    // Clear form
+    document.getElementById('evtTitle').value = '';
+    document.getElementById('evtLocation').value = '';
+    document.getElementById('evtDate').value = '';
+    document.getElementById('evtEndDate').value = '';
+    document.getElementById('evtType').value = 'cultural';
+    document.getElementById('evtComarca').value = '';
+    document.getElementById('evtDescription').value = '';
+    document.getElementById('evtWebsite').value = '';
+    document.getElementById('evtPhone').value = '';
+    document.getElementById('evtImage').value = '';
+    document.getElementById('evtFree').checked = false;
+    document.getElementById('evtAccessible').checked = false;
+}
+
+function showEventDetails(eventData) {
+    // Populate event details modal
+    document.getElementById('eventTitle').textContent = eventData.title;
+    document.getElementById('eventLocation').textContent = eventData.location;
+    document.getElementById('eventDate').textContent = eventData.date;
+    document.getElementById('eventType').textContent = eventData.type;
+    document.getElementById('eventDescription').textContent = eventData.description || 'No hi ha descripció disponible.';
+    
+    // Set image
+    const eventImage = document.getElementById('eventImage');
+    if (eventData.image) {
+        eventImage.src = eventData.image;
+        eventImage.style.display = 'block';
+    } else {
+        eventImage.style.display = 'none';
+    }
+    
+    // Show/hide optional info
+    if (eventData.website) {
+        document.getElementById('eventWebsite').href = eventData.website;
+        document.getElementById('eventWebsite').textContent = eventData.website;
+        document.getElementById('eventWebsiteInfo').style.display = 'flex';
+    } else {
+        document.getElementById('eventWebsiteInfo').style.display = 'none';
+    }
+    
+    if (eventData.phone) {
+        document.getElementById('eventPhone').textContent = eventData.phone;
+        document.getElementById('eventPhoneInfo').style.display = 'flex';
+    } else {
+        document.getElementById('eventPhoneInfo').style.display = 'none';
+    }
+    
+    // Set price info
+    document.getElementById('eventPrice').textContent = eventData.free ? 'Gratuït' : 'Consultar preu';
+    
+    // Show accessibility info
+    if (eventData.accessible) {
+        document.getElementById('eventAccessibilityInfo').style.display = 'flex';
+    } else {
+        document.getElementById('eventAccessibilityInfo').style.display = 'none';
+    }
+    
+    openModal('eventDetailsModal');
+}
+
+function toggleFavorite() {
+    const icon = document.getElementById('favoriteIcon');
+    const isFavorite = icon.classList.contains('fas');
+    
+    if (isFavorite) {
+        icon.classList.remove('fas');
+        icon.classList.add('far');
+        showSuccess('Eliminat de favorits', '');
+    } else {
+        icon.classList.remove('far');
+        icon.classList.add('fas');
+        showSuccess('Afegit a favorits', '');
+    }
+}
+
+function shareEvent() {
+    const eventTitle = document.getElementById('eventTitle').textContent;
+    const shareUrl = `${window.location.origin}${window.location.pathname}?event=${encodeURIComponent(eventTitle)}`;
+    document.getElementById('shareUrl').value = shareUrl;
+    closeModal('eventDetailsModal');
+    openModal('shareModal');
+}
+
+function shareOnFacebook() {
+    const url = document.getElementById('shareUrl').value;
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareOnTwitter() {
+    const url = document.getElementById('shareUrl').value;
+    const text = `Mira aquesta festa: ${document.getElementById('eventTitle').textContent}`;
+    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareOnWhatsApp() {
+    const url = document.getElementById('shareUrl').value;
+    const text = `Mira aquesta festa: ${document.getElementById('eventTitle').textContent} ${url}`;
+    window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function copyToClipboard() {
+    const shareUrl = document.getElementById('shareUrl');
+    shareUrl.select();
+    shareUrl.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(shareUrl.value).then(() => {
+        showSuccess('Enllaç copiat', 'L\'enllaç s\'ha copiat al portapapers');
+    });
+}
+
+function submitReport() {
+    const type = document.getElementById('reportType').value;
+    const description = document.getElementById('reportDescription').value;
+    const email = document.getElementById('reportEmail').value;
+    
+    if (!type || !description) {
+        showError('Si us plau, completa els camps obligatoris');
+        return;
+    }
+    
+    // Simulate report submission
+    console.log('Report submitted:', { type, description, email });
+    showSuccess('Report enviat', 'Gràcies pel teu feedback. Revisarem el problema aviat.');
+    closeModal('reportModal');
+    
+    // Clear form
+    document.getElementById('reportType').value = '';
+    document.getElementById('reportDescription').value = '';
+    document.getElementById('reportEmail').value = '';
+}
+
+function showConfirm(title, message, callback) {
+    document.getElementById('confirmTitle').textContent = title;
+    document.getElementById('confirmMessage').textContent = message;
+    document.getElementById('confirmBtn').onclick = () => {
+        callback();
+        closeModal('confirmModal');
+    };
+    openModal('confirmModal');
+}
+
+function showSuccess(title, message = '') {
+    document.getElementById('successTitle').textContent = title;
+    document.getElementById('successMessage').textContent = message;
+    openModal('successModal');
+    
+    // Auto close after 3 seconds if no message
+    if (!message) {
+        setTimeout(() => closeModal('successModal'), 2000);
+    }
+}
+
+function showError(message) {
+    // Create a simple error notification
+    const notification = document.createElement('div');
+    notification.className = 'error-notification';
+    notification.innerHTML = `
+        <i class="fas fa-exclamation-triangle"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Add styles if not already present
+    if (!document.querySelector('.error-notification-styles')) {
+        const style = document.createElement('style');
+        style.className = 'error-notification-styles';
+        style.textContent = `
+            .error-notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #dc3545;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+            }
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+function updateUserInterface(isLoggedIn, userEmail = '') {
+    const userProfile = document.getElementById('user-profile');
+    const userLogout = document.getElementById('user-logout');
+    const loginLinks = document.querySelectorAll('[onclick*="loginModal"]');
+    const registerLinks = document.querySelectorAll('[onclick*="registerModal"]');
+    
+    if (isLoggedIn) {
+        // Show user menu items
+        if (userProfile) userProfile.style.display = 'block';
+        if (userLogout) userLogout.style.display = 'block';
+        
+        // Hide login/register links
+        loginLinks.forEach(link => link.style.display = 'none');
+        registerLinks.forEach(link => link.style.display = 'none');
+        
+        // Update user greeting
+        const userGreeting = document.querySelector('.user-greeting');
+        if (userGreeting) {
+            userGreeting.textContent = `Hola, ${userEmail}`;
+        }
+    } else {
+        // Hide user menu items
+        if (userProfile) userProfile.style.display = 'none';
+        if (userLogout) userLogout.style.display = 'none';
+        
+        // Show login/register links
+        loginLinks.forEach(link => link.style.display = 'block');
+        registerLinks.forEach(link => link.style.display = 'block');
+    }
+}
+
+// Initialize modal event listeners when the document is ready
+document.addEventListener('DOMContentLoaded', function() {
+    // Set up form validation
+    const forms = document.querySelectorAll('.modal-form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+        });
+    });
+    
+    // Set up date inputs with current date as minimum
+    const dateInputs = document.querySelectorAll('input[type="date"]');
+    const today = new Date().toISOString().split('T')[0];
+    dateInputs.forEach(input => {
+        if (input.id === 'evtDate' || input.id === 'evtEndDate') {
+            input.min = today;
+        }
+    });
+    
+// Set up end date validation
+    const startDate = document.getElementById('evtDate');
+    const endDate = document.getElementById('evtEndDate');
+    
+    if (startDate && endDate) {
+        startDate.addEventListener('change', function() {
+            endDate.min = this.value;
+            if (endDate.value && endDate.value < this.value) {
+                endDate.value = this.value;
+            }
+        });
+    }
+    
+    // Set up mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    }
+    
+    // Set up theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-theme');
+            themeToggle.querySelector('i').classList.remove('fa-moon');
+            themeToggle.querySelector('i').classList.add('fa-sun');
+        }
+    }
+    
+    // Set up geolocation
+    const locateBtn = document.getElementById('locate-btn');
+    if (locateBtn) {
+        locateBtn.addEventListener('click', function() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+                        console.log('User location:', lat, lon);
+                        // Here you would center the map on user location
+                        showSuccess('Ubicació trobada', 'Mostrant festes properes a la teva ubicació');
+                    },
+                    function(error) {
+                        console.error('Geolocation error:', error);
+                        showError('No s\'ha pogut obtenir la teva ubicació');
+                    }
+                );
+            } else {
+                showError('El teu navegador no suporta geolocalització');
+            }
+        });
+    }
+    
+    // Set up navigation
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const section = this.dataset.section;
+            if (section) {
+                switchSection(section);
+                
+                // Update active states
+                navLinks.forEach(nl => nl.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Close mobile menu if open
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                    if (mobileMenuToggle) {
+                        mobileMenuToggle.classList.remove('active');
+                    }
+                }
+            }
+        });
+    });
+    
+    // Set up language selector
+    const langLinks = document.querySelectorAll('[data-lang]');
+    langLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const lang = this.dataset.lang;
+            changeLanguage(lang);
+        });
+    });
+    
+    // Set up dropdown menus
+    const dropdowns = document.querySelectorAll('.dropdown');
+    dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const content = dropdown.querySelector('.dropdown-content');
+        
+        if (toggle && content) {
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Close other dropdowns
+                dropdowns.forEach(otherDropdown => {
+                    if (otherDropdown !== dropdown) {
+                        otherDropdown.classList.remove('active');
+                    }
+                });
+                
+                dropdown.classList.toggle('active');
+            });
+        }
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+        dropdowns.forEach(dropdown => {
+            dropdown.classList.remove('active');
+        });
+    });
+});
+
+// Additional utility functions
+function switchSection(section) {
+    console.log('Switching to section:', section);
+    // This would be implemented based on your app structure
+    // For example, showing/hiding different sections of the app
+}
+
+function changeLanguage(lang) {
+    console.log('Changing language to:', lang);
+    // This would implement language switching functionality
+    localStorage.setItem('language', lang);
+    // You could reload the page or update text content dynamically
+}
+
+function copyLink() {
+    copyToClipboard();
+}
+
+function reportIssue() {
+    openModal('reportModal');
+}
+
+function exploreEvents() {
+    // Switch to events tab or map view
+    const eventsTab = document.querySelector('[data-tab="events"]');
+    if (eventsTab) {
+        eventsTab.click();
+    }
+}
+
+function loadMoreEvents() {
+    // Implement load more functionality
+    console.log('Loading more events...');
+    showSuccess('Carregant...', 'Obtenint més esdeveniments');
+}
+
+function sortEvents(sortBy) {
+    console.log('Sorting events by:', sortBy);
+    // Implement sorting functionality
+}
+
+function filterByTotal() {
+    console.log('Filtering by total events');
+}
+
+function filterByMonth() {
+    console.log('Filtering by this month');
+}
+
+function showPopularComarca() {
+    console.log('Showing popular comarca');
+}
+
+function showUpcoming() {
+    console.log('Showing upcoming events');
+}
+
+function refreshStats() {
+    console.log('Refreshing statistics');
+    showSuccess('Estadístiques actualitzades', '');
+}
+
+function shareLocation() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'La meva ubicació - Festes de Catalunya',
+            text: 'Mira les festes prop de la meva ubicació',
+            url: window.location.href
+        });
+    } else {
+        copyToClipboard();
+        showSuccess('Enllaç copiat', 'Comparteix-lo amb els teus amics');
+    }
+}
+
+function exportCalendar() {
+    console.log('Exporting calendar');
+    showSuccess('Calendari exportat', 'El fitxer s\'ha descarregat correctament');
+}
+
+function applyAdvancedFilters() {
+    const dateFilter = document.getElementById('dateFilter').value;
+    const comarcaFilter = document.getElementById('comarcaFilter').value;
+    const typeFilters = Array.from(document.querySelectorAll('.filter-checkboxes input:checked'))
+        .map(cb => cb.value);
+    
+    console.log('Applying filters:', { dateFilter, comarcaFilter, typeFilters });
+    showSuccess('Filtres aplicats', `Mostrant resultats filtrats`);
+}
+
+// Initialize advanced search toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const advancedSearchToggle = document.getElementById('advanced-search-toggle');
+    const advancedSearchPanel = document.getElementById('advanced-search-panel');
+    
+    if (advancedSearchToggle && advancedSearchPanel) {
+        advancedSearchToggle.addEventListener('click', function() {
+            const isVisible = advancedSearchPanel.style.display !== 'none';
+            advancedSearchPanel.style.display = isVisible ? 'none' : 'block';
+            this.classList.toggle('active');
+        });
+    }
+});
+
+// Make functions globally available
+window.performLogin = performLogin;
+window.performRegister = performRegister;
+window.performForgotPassword = performForgotPassword;
+window.submitEvent = submitEvent;
+window.showEventDetails = showEventDetails;
+window.toggleFavorite = toggleFavorite;
+window.shareEvent = shareEvent;
+window.shareOnFacebook = shareOnFacebook;
+window.shareOnTwitter = shareOnTwitter;
+window.shareOnWhatsApp = shareOnWhatsApp;
+window.copyToClipboard = copyToClipboard;
+window.submitReport = submitReport;
+window.showConfirm = showConfirm;
+window.showSuccess = showSuccess;
+window.showError = showError;
+window.updateUserInterface = updateUserInterface;
+window.openModal = openModal;
+window.closeModal = closeModal;
+window.copyLink = copyLink;
+window.reportIssue = reportIssue;
+window.exploreEvents = exploreEvents;
+window.loadMoreEvents = loadMoreEvents;
+window.sortEvents = sortEvents;
+window.filterByTotal = filterByTotal;
+window.filterByMonth = filterByMonth;
+window.showPopularComarca = showPopularComarca;
+window.showUpcoming = showUpcoming;
+window.refreshStats = refreshStats;
+window.shareLocation = shareLocation;
+window.exportCalendar = exportCalendar;
+window.applyAdvancedFilters = applyAdvancedFilters;
+</script>

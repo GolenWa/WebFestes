@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Mapa interactiu de festes i festivals de Catalunya organitzat per comarques i municipis">
+    <meta name="keywords" content="festes catalunya, festivals, mapa interactiu, comarques, municipis">
+    <meta name="author" content="Festes de Catalunya">
+    
+    <title>Festes de Catalunya - Mapa Interactiu</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <!-- HEADER COMPONENT -->
+    <div id="header-container"></div>
+    
+    <div class="main-container">
+        <!-- MAPA SECTION -->
+        <div class="map-section">
+            <div class="map-header">
+                <h2><i class="fas fa-map"></i> <span id="map-title">Mapa de Catalunya</span></h2>
+                <div class="map-controls">
+                    <button id="zoom-out-btn" class="control-btn" title="Tornar a Catalunya" style="display: none;">
+                        <i class="fas fa-compress-arrows-alt"></i>
+                    </button>
+                    <div class="map-filters">
+                        <button class="filter-btn active" data-filter="all">Totes</button>
+                        <button class="filter-btn" data-filter="cultural">Cultural</button>
+                        <button class="filter-btn" data-filter="gastronomic">Gastronòmica</button>
+                        <button class="filter-btn" data-filter="religious">Religiosa</button>
+                        <button class="filter-btn" data-filter="music">Musical</button>
+                    </div>
+                </div>
+            </div>
+            <div id="map"></div>
+        </div>
+
+        <!-- SIDEBAR COMPONENT -->
+        <div id="sidebar-container"></div>
+    </div>
+
+    <!-- MODALS COMPONENT -->
+    <div id="modals-container"></div>
+
+    <!-- LOADING OVERLAY -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Carregant mapa...</p>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script src="assets/js/data.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/calendar.js"></script>
+    <script src="assets/js/events.js"></script>
+    <script src="assets/js/main.js"></script>
+    
+    <!-- Load HTML components dynamically -->
+    <script>
+        // Helper to load HTML components into containers
+        function loadComponent(containerId, url) {
+            fetch(url)
+                .then(res => res.text())
+                .then(html => {
+                    document.getElementById(containerId).innerHTML = html;
+                    // Initialize mobile menu after header is loaded
+                    if (containerId === 'header-container') {
+                        initializeMobileMenu();
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading component:', error);
+                });
+        }
+
+        // Initialize mobile menu functionality
+        function initializeMobileMenu() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuToggle && mobileMenu) {
+                mobileMenuToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Toggle active class on button
+                    mobileMenuToggle.classList.toggle('active');
+                    
+                    // Toggle active class on menu
+                    mobileMenu.classList.toggle('active');
+                    
+                    // Toggle body class to prevent scrolling
+                    document.body.classList.toggle('menu-open');
+                });
+
+                // Close mobile menu when clicking on nav links
+                const mobileNavLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    });
+                });
+
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!mobileMenu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    }
+                });
+
+                // Close mobile menu on window resize if open
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 900) {
+                        mobileMenu.classList.remove('active');
+                        mobileMenuToggle.classList.remove('active');
+                        document.body.classList.remove('menu-open');
+                    }
+                });
+            }
+        }
+
+        // Load components and initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadComponent('header-container', 'components/header.html');
+            loadComponent('sidebar-container', 'components/sidebar.html');
+            loadComponent('modals-container', 'components/modals.html');
+            
+            // Hide loading overlay once everything is loaded
+            setTimeout(() => {
+                const loadingOverlay = document.getElementById('loading-overlay');
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'none';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

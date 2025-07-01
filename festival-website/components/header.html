@@ -1,0 +1,90 @@
+<!-- HEADER COMPONENT -->
+<header id="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <i class="fas fa-map-marked-alt"></i>
+            <h1>Festes de Catalunya</h1>
+        </div>
+        
+        <!-- User Actions -->
+        <div class="nav-buttons">
+            <!-- Language Selector -->
+            <div class="dropdown">
+                <button class="btn btn-outline btn-sm dropdown-toggle">
+                    <i class="fas fa-globe"></i> CA
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" data-lang="ca"><i class="fas fa-flag"></i> Català</a>
+                    <a href="#" data-lang="es"><i class="fas fa-flag"></i> Castellano</a>
+                    <a href="#" data-lang="en"><i class="fas fa-flag"></i> English</a>
+                </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button class="btn btn-outline btn-sm" id="theme-toggle" title="Canviar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <!-- Geolocation -->
+            <button class="btn btn-outline btn-sm" id="locate-btn" title="Trobar festes properes">
+                <i class="fas fa-location-arrow"></i>
+            </button>
+
+            <!-- User Menu -->
+            <div class="dropdown">
+                <button class="btn btn-outline dropdown-toggle">
+                    <i class="fas fa-user"></i> Compte
+                </button>
+                <div class="dropdown-content">
+                    <a href="#" onclick="openModal('loginModal')">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sessió
+                    </a>
+                    <a href="#" onclick="openModal('registerModal')">
+                        <i class="fas fa-user-plus"></i> Registrar-se
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" id="user-profile" style="display: none;">
+                        <i class="fas fa-user-circle"></i> Perfil
+                    </a>
+                    <a href="#" id="user-logout" style="display: none;">
+                        <i class="fas fa-sign-out-alt"></i> Tancar Sessió
+                    </a>
+                </div>
+            </div>
+
+            <!-- Add Event Button -->
+            <button class="btn btn-primary" onclick="openModal('addEventModal')">
+                <i class="fas fa-plus"></i> Afegir Festa
+            </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <nav class="mobile-nav">
+            <a href="#" class="mobile-nav-link active" data-section="map">
+                <i class="fas fa-map"></i> Mapa
+            </a>
+            <a href="#" class="mobile-nav-link" data-section="calendar">
+                <i class="fas fa-calendar-alt"></i> Calendari
+            </a>
+            <a href="#" class="mobile-nav-link" data-section="favorites">
+                <i class="fas fa-heart"></i> Favorits
+            </a>
+            <div class="mobile-divider"></div>
+            <a href="#" onclick="openModal('loginModal')">
+                <i class="fas fa-sign-in-alt"></i> Iniciar Sessió
+            </a>
+            <a href="#" onclick="openModal('addEventModal')">
+                <i class="fas fa-plus"></i> Afegir Festa
+            </a>
+        </nav>
+    </div>
+</header>
